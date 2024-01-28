@@ -15,7 +15,9 @@ router.get("/UserProfile/",passport.checkAuthentication,profilecontroller.get_pr
 router.post('/Update/', passport.checkAuthentication,profilecontroller.update_profile)
 router.post('/login', passport.authenticate('local', { failureRedirect: '/user/signIn',successRedirect: '/' }));
 router.get('/auth/google', passport.authenticate('google',{scope:['profile','email']}));
-router.get('/auth/google/callback', passport.authenticate('google', {successRedirect: '/',failureRedirect : '/user/signIn'}), controller.createSession)
+router.get('/auth/google/callback', passport.authenticate('google', {successRedirect: '/',failureRedirect : '/user/signIn'}), controller.createSession);
+router.get('/forget_password', UserController.forget_password);
+router.post('/change_password', UserController.change_password);
 
 
 module.exports = router;

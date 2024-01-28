@@ -1,3 +1,6 @@
+
+<div class = "main">
+ <div class = "flex_main">
 <h1>sign up page</h1>
 
 
@@ -7,8 +10,22 @@
     <input type = "password" name = "password" placeholder = "Password" required><br>
     <input type = "password" name = "confirm_password" placeholder = "Confirm Password" required><br>
     <input type = "submit" value = "Sign Up">
+    
+<% if (err) { %>
+    <div><%= err %></div>
+    <% } %>
 
 
    
     </form>
+    <div class="flex-container">
+        
+        <div class="flex-item"><a href = "/user/SignIn">Sign In</a></div>
+        <div class="flex-item"><a href = "/user/auth/google">Google SignIn/SignUp</a></div>
+      </div>
+
+   
+</div>
     <p><a href = "/user/auth/google">Google SignIn/SignUp</a></p>
+    </div>
+    </div>

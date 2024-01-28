@@ -4,12 +4,10 @@ const path = require('path');
 
 
 module.exports.get_profile = (req, res) =>{
-    // console.log(req.cookies.user_id)
-    // console.log(req.query.id);
     const user = User.findOne({_id :req.query.id}).then((users)=>{
         console.log(req.user);
         res.render('profile',{ user: users, cur_user_id: req.user.id})
-    }).catch((err)=>{console.log("why here:",err); res.redirect('back')});
+    }).catch((err)=>{res.redirect('back')});
 
 
 }
@@ -26,7 +24,6 @@ module.exports.update_profile = (req,res)=>{
             const user = await User.findOne({_id: req.body._id});
             if(req.file){
                 if(user.avatar){
-                    console.log("why error here print something");
                     fs.unlinkSync(path.join(__dirname, '..',user.avatar));
                 }
             req.body.avatar = User.avatarPath + '/' +req.file.filename; 
