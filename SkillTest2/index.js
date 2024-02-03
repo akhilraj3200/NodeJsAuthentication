@@ -16,6 +16,9 @@ var LocalStrategy = require('passport-local').Strategy;
 
 
 
+
+
+
 const app = express();
 
 
@@ -61,7 +64,9 @@ var strategy = new LocalStrategy({ usernameField: 'email' },(email, password, do
     //to do
     User.findOne({email: email}).then(async(user)=>{
         if(user){
+          console.log("user")
             const match = await bcrypt.compare(password, user.password);
+            console.log("pasword")
 
             if(!match){
                 return done(null, false);
@@ -88,11 +93,13 @@ passport.serializeUser(function(user, cb) {
   
   passport.deserializeUser(function(user, cb) {
     process.nextTick(function() {
+     
       return cb(null, user);
     });
   });
   passport.checkAuthentication = function(req, res, next){
     if(req.isAuthenticated()){
+     
         return next();
     }
     return res.redirect('/user/signIn')
@@ -100,6 +107,10 @@ passport.serializeUser(function(user, cb) {
   passport.setAuthenticatedUser = function(req, res, next){
     if(req.isAuthenticated()){
         res.locals.user = req.user;
+        // res.cookie('user_id',result.id)
+        // req.flash('success', 'User login Successfully');
+        // console.log(res.locals.flash)
+        // console.log(req.flash)
     }
   }
 

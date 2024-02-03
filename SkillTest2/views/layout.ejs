@@ -13,10 +13,12 @@
     <link rel="stylesheet" href = "<%= '/css/home.css'%>">
     <link rel="stylesheet" href="<%= '/css/profile.css'%>">
     <link rel = "stylesheet" href = "<%= '/css/sign_in.css'%>">
+    <link rel ="stylesheet" href = "<%= '/css/alertify.min.css'%>">
     <script
 src="https://code.jquery.com/jquery-3.7.0.min.js"
 integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
 crossorigin="anonymous"></script>
+<script src="<%= '/js/alertify.min.js'%>"></script>
   
     <%- style %>
     <%- script %>
@@ -28,6 +30,27 @@ crossorigin="anonymous"></script>
     <div>
      
     <%- body %>
+
+    <% if (err != ""){ %>
+        <script>
+            var msg = "<%= err %>";
+            alertify.set('notifier','position', 'top-right');
+        alertify.notify(msg, 'error', 5); 
+
+    </script>
+       
+    <% } %>
+    <% if (msg != ""){ %>
+        <script>
+            var msg = "<%= msg %>";
+            alertify.set('notifier','position', 'top-right');
+        alertify.notify(msg, 'success', 5); 
+
+    </script>
+       
+    <% } %>
+        
+    
 
         </div>
     <%- include('_footer') %>

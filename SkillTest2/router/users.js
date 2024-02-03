@@ -11,13 +11,17 @@ router.get('/signUp', UserController.user_sign_up_controller);
 router.post('/create', UserController.create);
 router.post('/create-session', UserController.createSession);
 router.post('/signOut', UserController.signout);
-router.get("/UserProfile/",passport.checkAuthentication,profilecontroller.get_profile)
-router.post('/Update/', passport.checkAuthentication,profilecontroller.update_profile)
-router.post('/login', passport.authenticate('local', { failureRedirect: '/user/signIn',successRedirect: '/' }));
+// router.get("/UserProfile/",passport.checkAuthentication,profilecontroller.get_profile)
+// router.post('/Update/', passport.checkAuthentication,profilecontroller.update_profile)
+// router.post('/login', passport.authenticate('local', { failureRedirect: '/user/signIn',successRedirect: '/' }));
+router.post('/login', passport.authenticate('local', {failureRedirect: '/user/signIn',successRedirect: '/' }));
 router.get('/auth/google', passport.authenticate('google',{scope:['profile','email']}));
 router.get('/auth/google/callback', passport.authenticate('google', {successRedirect: '/',failureRedirect : '/user/signIn'}), controller.createSession);
 router.get('/forget_password', UserController.forget_password);
 router.post('/change_password', UserController.change_password);
-
+// router.get('/sendEmail',UserController.test_email )
+router.post('/send_password_reset_link', UserController.send_password_reset_link);
+router.get('/reset_password', UserController.reset_password);
+router.post('/change_password_link/:email', UserController.change_password_link);
 
 module.exports = router;
