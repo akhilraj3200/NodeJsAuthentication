@@ -22,7 +22,7 @@ var LocalStrategy = require('passport-local').Strategy;
 const app = express();
 
 
-const port = 8000;
+const port = 10001;
 const expressLayouts = require('express-ejs-layouts');
 
 
@@ -43,7 +43,7 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({mongoUrl: 'mongodb://127.0.0.1:27017/codial',
+    store: MongoStore.create({mongoUrl: 'mongodb+srv://akhilraj3200:3cjvztm1c8y00oGX@cluster0.k7vm8mj.mongodb.net/',
     dbName: 'codial',
     autoRemove: 'interval',
     autoRemoveInterval: 10

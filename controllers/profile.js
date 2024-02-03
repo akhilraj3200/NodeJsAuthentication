@@ -5,7 +5,6 @@ const path = require('path');
 
 module.exports.get_profile = (req, res) =>{
     const user = User.findOne({_id :req.query.id}).then((users)=>{
-        console.log(req.user);
         res.render('profile',{ user: users, cur_user_id: req.user.id})
     }).catch((err)=>{res.redirect('back')});
 
@@ -17,7 +16,6 @@ module.exports.update_profile = (req,res)=>{
 
     User.UploadedAvatar(req,res, async function(err){
         if(err){
-            console.log("Multer Error", err)
 
         }
         else{

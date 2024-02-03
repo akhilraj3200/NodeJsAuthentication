@@ -32,7 +32,6 @@ module.exports.createSession = (req, res) =>{
             bcrypt.compare(req.body.password, result.password, async(err, password_check) => {
                               if (err) {
                                 return res.redirect('back');
-                                console.log("some error")
                               } else {
 
                 if(password_check){
